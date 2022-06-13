@@ -1,0 +1,19 @@
+@api = http://localhost:3000/tunas
+
+GET {{api}}
+###
+GET {{api}}/15
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "name": "Nueva",
+    "ShortName": "N"
+}
+###
+GET {{api}}/Count
+###
+DELETE {{api}}/15
+###
+DELETE {{api}}
