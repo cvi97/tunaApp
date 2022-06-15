@@ -8,8 +8,8 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "name": "Nueva",
-    "ShortName": "N"
+    "name": "Tuna de Derecho de Alicante",
+    "ShortName": "TDA"
 }
 ###
 GET {{api}}/Count

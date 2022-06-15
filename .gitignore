@@ -1,1 +1,3 @@
 node_modules
+# file .env is used to store sensitive information, such as your database username and password.
+.env 

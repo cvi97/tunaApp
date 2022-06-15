@@ -8,10 +8,11 @@ export const getUsers = async (req, res) => {
 }
 
 export const saveUser = async (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
+    const name = req.body.Name;
+    const email = req.body.Email;
+    const tuna = req.body.Tuna;
     const connection = await connect();
-    const results = await connection.query("INSERT INTO Users (Name, Email) VALUES (?, ?);", [name, email]);
+    const results = await connection.query("INSERT INTO Users (Name, Email, Tuna) VALUES (?, ?, ?);", [name, email, tuna]);
     connection.end();
     res.send(results);
 }

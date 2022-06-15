@@ -1,7 +1,12 @@
+import { config as dotenv } from "dotenv";
+// Load environment variables from .env file, where API keys and passwords are configured
+dotenv();
+
+// Parameters for database connection
 export const config = {
-    host: 'bsu5ekft4qhzb6cxmzm1-mysql.services.clever-cloud.com',
-    user: 'ughctsji3ijtauft',
-    password: 'D2ouLHLFtzGITR1OTDCe',
-    database: 'bsu5ekft4qhzb6cxmzm1',
+    host: 'process.env.DB_HOST',
+    user: 'process.env.DB_USER',
+    password: 'process.env.DB_PASSWORD',
+    database: 'process.env.DB_NAME',
     port: 3306
-}
+};

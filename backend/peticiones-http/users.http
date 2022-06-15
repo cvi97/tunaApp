@@ -7,6 +7,8 @@ Post {{api}}
 Content-Type: application/json
 
 {
-    "name": "John",
-    "email": ""
+    "Name": "Alvaro",
+    "Email": "alvaro@correo.es",
+    "Mote": "Frijol",
+    "Tuna": 16
 }
