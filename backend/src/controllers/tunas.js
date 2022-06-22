@@ -17,8 +17,12 @@ export const getTuna = async (req, res) => {
     res.json(rows[0]);
 }
 
-export const getTunasCount = (req, res) => {
-    res.send('Tunas Count!');
+export const getNumerOfUsers = async (req, res) => {
+    const tunaId = req.params.tunaid;
+    const connection = await connect();
+    const [rows] = await connection.query("SELECT COUNT(*) AS count FROM Users WHERE Tuna = ?;", [tunaId]);
+    connection.end();
+    res.json(rows[0]);
 }
 
 export const saveTuna = async (req, res) => {
@@ -43,4 +47,12 @@ export const deleteAllTunas = async (req, res) => {
     const results = await connection.query("DELETE FROM Tunas;");
     connection.end();
     res.send(results);
+}
+
+export const getUsersTuna = async (req, res) => {
+    const tunaID = req.params.id;
+    const connection = await connect();
+    const [rows] = await connection.query("SELECT * FROM Users WHERE Tuna = ?;", [tunaID]);
+    connection.end();
+    res.json(rows);
 }

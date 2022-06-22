@@ -1,19 +1,21 @@
-@api = http://localhost:3000/tunas
+@api = http://localhost:3000
 
-GET {{api}}
-###
-GET {{api}}/15
-###
-POST {{api}}
+### Pedir todas las tunas
+GET {{api}}/tunas
+### Pedir una tuna
+GET {{api}}/tunas/1
+
+### Crear una tuna
+POST {{api}}/tunas
 Content-Type: application/json
 
 {
     "name": "Tuna de Derecho de Alicante",
     "ShortName": "TDA"
 }
+### Devuelve número de usuarios de una tuna
+GET {{api}}/tunas/1/countofusers
+### Borrar una tuna
+DELETE {{api}}/tunas/15
 ###
-GET {{api}}/Count
-###
-DELETE {{api}}/15
-###
-DELETE {{api}}
+DELETE {{api}}/tunas

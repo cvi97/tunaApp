@@ -1,14 +1,24 @@
-@api = http://localhost:3000/users
+@api = http://localhost:3000
 
-GET {{api}}
-###
+GET {{api}}/users
 
-Post {{api}}
+### Pedir todos los usuarios de una tuna
+GET {{api}}/tunas/1/users
+
+### Crear un usuario en una tuna
+Post {{api}}/tunas/1/users
 Content-Type: application/json
 
 {
-    "Name": "Alvaro",
-    "Email": "alvaro@correo.es",
-    "Mote": "Frijol",
-    "Tuna": 16
+    "Name": "Ruperto",
+    "Email": "ru@correo.es",
+    "Mote": "El Fiera"
+}
+
+### Modificar mote de un usuario
+PUT {{api}}/users/1
+Content-Type: application/json
+
+{
+    "Mote": "Frijol"
 }

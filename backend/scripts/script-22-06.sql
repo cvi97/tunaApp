@@ -76,7 +76,7 @@ CREATE TABLE `Tunas` (
   `Name` varchar(45) NOT NULL,
   `ShortName` varchar(45) NOT NULL,
   PRIMARY KEY (`TunaID`,`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`UserID`),
   KEY `fk_user_tuna_idx` (`Tuna`),
   CONSTRAINT `fk_user_tuna` FOREIGN KEY (`Tuna`) REFERENCES `Tunas` (`TunaID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- Dump completed on 2022-06-22 11:08:45

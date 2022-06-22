@@ -10,9 +10,19 @@ export const getUsers = async (req, res) => {
 export const saveUser = async (req, res) => {
     const name = req.body.Name;
     const email = req.body.Email;
-    const tuna = req.body.Tuna;
+    const tuna = req.params.tunaid;
+    const mote = req.body.Mote;
     const connection = await connect();
-    const results = await connection.query("INSERT INTO Users (Name, Email, Tuna) VALUES (?, ?, ?);", [name, email, tuna]);
+    const results = await connection.query("INSERT INTO Users (Name, Mote, Email, Tuna) VALUES (?, ?, ?, ?);", [name, mote, email, tuna]);
+    connection.end();
+    res.send(results);
+}
+
+export const updateUserMote = async (req, res) => {
+    const userid = req.params.userid;
+    const mote = req.body.Mote;
+    const connection = await connect();
+    const results = await connection.query("UPDATE Users SET Mote = ? WHERE UserID = ?;", [mote, userid]);
     connection.end();
     res.send(results);
 }
