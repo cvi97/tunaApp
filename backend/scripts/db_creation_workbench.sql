@@ -35,25 +35,18 @@ CREATE TABLE `Events` (
     ON UPDATE CASCADE);
 
 
-CREATE TABLE IF NOT EXISTS `Song` (
-  `SongID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
-  `Tuna` INT NOT NULL,
-  `LastEditor` INT NULL,
+CREATE TABLE `Song` (
+  `SongID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) NOT NULL,
+  `Tuna` int NOT NULL,
+  `LastEditor` int DEFAULT NULL,
+  `Author` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`SongID`),
-  INDEX `fk_tuna_idx` (`Tuna` ASC) VISIBLE,
-  INDEX `fk_editor_idx` (`LastEditor` ASC) VISIBLE,
-  CONSTRAINT `fk_tuna`
-    FOREIGN KEY (`Tuna`)
-    REFERENCES .`Tunas` (`TunaID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_editor`
-    FOREIGN KEY (`LastEditor`)
-    REFERENCES .`Users` (`UserID`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
+  KEY `fk_tuna_idx` (`Tuna`),
+  KEY `fk_editor_idx` (`LastEditor`),
+  CONSTRAINT `fk_editor` FOREIGN KEY (`LastEditor`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_tuna` FOREIGN KEY (`Tuna`) REFERENCES `Tunas` (`TunaID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `UserEvent` (
   `User` INT NOT NULL,
@@ -70,3 +63,15 @@ CREATE TABLE `UserEvent` (
     REFERENCES .`Events` (`EventID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+CREATE TABLE `Task` (
+  `idTask` int NOT NULL AUTO_INCREMENT,
+  `Creator` int NOT NULL,
+  `Description` varchar(450) DEFAULT '"Tarea"',
+  `Novato` int NOT NULL,
+  PRIMARY KEY (`idTask`),
+  KEY `fk_creator_idx` (`Creator`),
+  KEY `fk_task_novato_idx` (`Novato`),
+  CONSTRAINT `fk_task_creator` FOREIGN KEY (`Creator`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_task_novato` FOREIGN KEY (`Novato`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
