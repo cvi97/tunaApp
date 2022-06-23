@@ -20,6 +20,7 @@ CREATE TABLE `Events` (
   `Name` varchar(45) NOT NULL,
   `Description` varchar(200) DEFAULT NULL,
   `Creator` int DEFAULT NULL,
+  `Eventscol` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`EventID`),
   KEY `fk_creator_idx` (`Creator`),
   CONSTRAINT `fk_creator` FOREIGN KEY (`Creator`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -38,12 +39,14 @@ CREATE TABLE `Song` (
   `Tuna` int NOT NULL,
   `LastEditor` int DEFAULT NULL,
   `Author` varchar(45) DEFAULT NULL,
+  `Lyrics` text,
   PRIMARY KEY (`SongID`),
   KEY `fk_tuna_idx` (`Tuna`),
   KEY `fk_editor_idx` (`LastEditor`),
   CONSTRAINT `fk_editor` FOREIGN KEY (`LastEditor`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_tuna` FOREIGN KEY (`Tuna`) REFERENCES `Tunas` (`TunaID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 
 --
@@ -109,10 +112,11 @@ CREATE TABLE `Users` (
   `isAdmin` tinyint DEFAULT '0',
   `isConfirmed` tinyint DEFAULT '0',
   `Role` varchar(45) DEFAULT 'tuno',
+  `Password` blob,
   PRIMARY KEY (`UserID`),
   KEY `fk_user_tuna_idx` (`Tuna`),
   CONSTRAINT `fk_user_tuna` FOREIGN KEY (`Tuna`) REFERENCES `Tunas` (`TunaID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 
 -- Dump completed on 2022-06-22 11:08:45

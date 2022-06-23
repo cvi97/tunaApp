@@ -1,0 +1,26 @@
+@api = http://localhost:3000
+
+### Pedir todas las canciones de una tuna
+GET {{api}}/tunas/1/songs
+
+### One song from one Tuna
+GET {{api}}/tunas/1/songs/1
+
+### Crear una canción
+POST {{api}}/tunas/1/songs
+Content-Type: application/json
+
+{
+    "name": "Clavelitos"
+}
+
+### Actualizar letra de una canción indicando id de la canción
+PUT {{api}}/songs/1/updateLyrics
+Content-Type: application/json
+
+{
+    "lyrics": "Moci[LAm]ta, da[MI]me el clavel[LAm],\ndame el clavel de tu[MI] boca"
+}
+
+### Delete a song by id
+DELETE {{api}}/songs/2

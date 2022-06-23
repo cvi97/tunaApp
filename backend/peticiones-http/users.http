@@ -5,6 +5,12 @@ GET {{api}}/users
 ### Pedir todos los usuarios de una tuna
 GET {{api}}/tunas/1/users
 
+### Get one user by id
+GET {{api}}/users/1
+
+### Get user password by id
+GET {{api}}/users/1/password
+
 ### Crear un usuario en una tuna
 Post {{api}}/tunas/1/users
 Content-Type: application/json
@@ -12,11 +18,20 @@ Content-Type: application/json
 {
     "Name": "Ruperto",
     "Email": "ru@correo.es",
-    "Mote": "El Fiera"
+    "Mote": "El Fiera",
+    "Password": "123456"
+}
+
+### Update password of an user 
+PUT {{api}}/users/1/update_password
+Content-Type: application/json
+
+{
+    "Password": "pass"
 }
 
 ### Modificar mote de un usuario
-PUT {{api}}/users/1
+PUT {{api}}/users/1/update_mote
 Content-Type: application/json
 
 {
