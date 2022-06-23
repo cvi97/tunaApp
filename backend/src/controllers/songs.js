@@ -16,7 +16,7 @@ export const getSongTuna = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query("SELECT * FROM Song WHERE Tuna = ? AND SongID = ?;", [tunaID, songID]);
     connection.end();
-    res.json(rows);
+    res.json(rows[0]);
 }
 
 export const saveSongsTuna = async (req, res) => {

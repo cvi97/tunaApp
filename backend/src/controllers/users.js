@@ -12,7 +12,7 @@ export const getUser = async (req, res) => {
     const userdid = req.params.userid;
     const [rows] = await connection.query("SELECT *, 'No Mostrar' AS Password FROM Users WHERE UserID = ?;", [userdid]);
     connection.end();
-    res.json(rows);
+    res.json(rows[0]);
 }
 
 export const getUserPassword = async (req, res) => {
