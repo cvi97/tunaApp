@@ -37,3 +37,14 @@ Content-Type: application/json
 {
     "Mote": "Frijol"
 }
+
+### Update user role
+PUT {{api}}/users/1/update_role
+Content-Type: application/json
+
+{
+    "Role": "admin"
+}
+
+### Delete user
+DELETE {{api}}/users/7

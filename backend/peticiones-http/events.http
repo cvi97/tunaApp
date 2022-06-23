@@ -1,0 +1,19 @@
+@api = http://localhost:3000
+
+
+### 
+GET {{api}}/tunas/1/events
+
+###
+GET {{api}}/tunas/1/events/2
+
+###
+POST {{api}}/tunas/1/events
+Content-Type: application/json
+
+{
+    "name": "Evento 2",
+    "description": "Descripcion del evento 2",
+    "creator": "1",
+    "date": "2017-02-01"
+}

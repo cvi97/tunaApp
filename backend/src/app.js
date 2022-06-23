@@ -8,6 +8,7 @@ import { options } from './swaggerOptions';
 import tunasRoutes from "./routes/tunas";
 import usersRoutes from "./routes/users"; 
 import songsRoutes from "./routes/songs";
+import eventsRoutes from "./routes/events";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(tunasRoutes);
 app.use(usersRoutes);
 app.use(songsRoutes);
+app.use(eventsRoutes);
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(options)));
 

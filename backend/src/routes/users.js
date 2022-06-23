@@ -1,5 +1,5 @@
 import { Router } from "express";   // import Router from express
-import { getUsers, saveUser, updateUserMote, updateUserPassword, getUser, getUserPassword } from "../controllers/users";    // import the getUsers function from the users.js file
+import { getUsers, saveUser, updateUserMote, updateUserPassword, getUser, getUserPassword, updateUserRole, deleteUser } from "../controllers/users";    // import the getUsers function from the users.js file
 
 const router = Router();    
 
@@ -63,5 +63,23 @@ router.put('/users/:userid/update_mote', updateUserMote);
  *   tags: [Users]
  */
 router.put('/users/:userid/update_password', updateUserPassword);
+
+/**
+ * @swagger
+ * /users/{userId}/updateRole:
+ *  put:
+ *   description: Use to update the role of a user by id 
+ *   tags: [Users]
+ */
+router.put('/users/:userid/update_role', updateUserRole);
+
+/**
+ * @swagger
+ * /users/{userId}:
+ *  delete:
+ *   description: Use to delete a user by id
+ *   tags: [Users]
+ */
+router.delete('/users/:userid', deleteUser);
 
 export default router;

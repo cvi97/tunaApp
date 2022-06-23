@@ -20,10 +20,13 @@ CREATE TABLE `Events` (
   `Name` varchar(45) NOT NULL,
   `Description` varchar(200) DEFAULT NULL,
   `Creator` int DEFAULT NULL,
-  `Eventscol` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Tuna` int NOT NULL,
+  `Date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`EventID`),
   KEY `fk_creator_idx` (`Creator`),
-  CONSTRAINT `fk_creator` FOREIGN KEY (`Creator`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_event_tuna_idx` (`Tuna`),
+  CONSTRAINT `fk_creator` FOREIGN KEY (`Creator`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_event_tuna` FOREIGN KEY (`Tuna`) REFERENCES `Tunas` (`TunaID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

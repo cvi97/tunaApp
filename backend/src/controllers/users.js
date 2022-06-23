@@ -52,3 +52,20 @@ export const updateUserPassword = async (req, res) => {
     connection.end();
     res.send(results);
 }
+
+export const updateUserRole = async (req, res) => {
+    const userid = req.params.userid;
+    const role = req.body.Role;
+    const connection = await connect();
+    const results = await connection.query("UPDATE Users SET Role = ? WHERE UserID = ?;", [role, userid]);
+    connection.end();
+    res.send(results);
+}
+
+export const deleteUser = async (req, res) => {
+    const userid = req.params.userid;
+    const connection = await connect();
+    const results = await connection.query("DELETE FROM Users WHERE UserID = ?;", [userid]);
+    connection.end();
+    res.send(results);
+}
