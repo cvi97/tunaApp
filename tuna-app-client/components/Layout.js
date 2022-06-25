@@ -8,9 +8,9 @@ const Layout = ({children}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F3D69D',
+        backgroundColor: '#FCF3CF',
         borderTopWidth: 2,
-        borderTopColor: 'black',
+        borderTopColor: 'black'
     }, 
 });
 export default Layout

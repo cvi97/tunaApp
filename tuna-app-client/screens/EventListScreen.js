@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import { getEvents } from '../api'
 
 import Layout from '../components/Layout'
 import EventList from '../components/EventList'
 
-const EventListScreen = () => {
+import NewButton from '../components/NewButton'
+
+const EventListScreen = ({navigation}) => {
 
   const [Events, setEvents] = useState([])
 
@@ -21,7 +23,9 @@ const EventListScreen = () => {
   return (
     <Layout>
       <EventList Events={Events} />
+      <NewButton navigation={navigation} type="event"/>
     </Layout>
+    
   );
 }
 
