@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-const SongItem = ({song}) => {
+const EventItem = ({Event}) => {
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>{song.Name} - Autor: {song.Author}</Text>
+        <Text style={styles.text}>{Event.Name}</Text>
     </View>
   )
 }
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SongItem
+export default EventItem

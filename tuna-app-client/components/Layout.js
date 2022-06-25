@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F3D69D',
-        padding: 20,
-        justifyContent: 'center'
+        borderTopWidth: 2,
+        borderTopColor: 'black',
     }, 
 });
 export default Layout

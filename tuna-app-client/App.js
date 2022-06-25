@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native'
-import {NavigationContainer, DarkTheme} from '@react-navigation/native';
+import { Textn, Button } from 'react-native'
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -11,13 +11,32 @@ import EventListScreen from './screens/EventListScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'red',
+    card: '#F3D69D',
+    text: 'black',
+    TabBarText: '#566573',
+  },
+};
+
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
+    <NavigationContainer theme={MyTheme}>
+      <Tab.Navigator
+        /*screenOptions={{
+          headerStyle: { backgroundColor: '#F3D69D' },
+          headerTitleStyle: { fontSize: 25 },
+          //tabBarStyle: { backgroundColor: '#566573'},
+        }}*/
+      >
+        <Tab.Screen options= {{headerRight: () => (<Button title="Nuevo Evento" color="black" />)}} name="Eventos" component={EventListScreen} />
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Cancionero" component={SongListScreen} />
-        <Tab.Screen name="Eventos" component={EventListScreen} />
+        <Tab.Screen options= {{headerRight: () => (<Button title="Nueva Canción" color="black" />)}} name="Cancionero" component={SongListScreen} />
+        
         
       </Tab.Navigator>
     </NavigationContainer>
