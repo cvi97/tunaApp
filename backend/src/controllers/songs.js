@@ -22,9 +22,12 @@ export const getSongTuna = async (req, res) => {
 export const saveSongsTuna = async (req, res) => {
     const name = req.body.name;
     const tunaID = req.params.tunaid;
+    const author = req.body.author;
+    const lastEditor = req.body.lastEditor;
+    const lyrics = req.body.lyrics;
     
     const connection = await connect();
-    const results = await connection.query("INSERT INTO Song (Name, Tuna) VALUES (?, ?);", [name, tunaID]);
+    const results = await connection.query("INSERT INTO Song (Name, Tuna, Author, LastEditor, Lyrics) VALUES (?, ?, ?, ?, ?);", [name, tunaID, author, lastEditor, lyrics]);
     connection.end();
     res.send(results);
 }

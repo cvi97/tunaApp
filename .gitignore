@@ -2,3 +2,17 @@ node_modules
 # file .env is used to store sensitive information, such as your database username and password.
 .env 
 dist
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
