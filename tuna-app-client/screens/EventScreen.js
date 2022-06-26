@@ -9,17 +9,15 @@ const EventScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   console.log(route.params);
-  const eventid = route.params.eventid;
-  const [Event, setEvent] = useState([]);
-
+  const [Event, setEvent] = useState({});
+  navigation.setOptions({ headerTitle: Event.Name });
   const loadEvent = async () => {
-    const data = await getEvent(eventid);
+    const data = await getEvent(route.params.eventid);
     setEvent({Name: data.Name, Description: data.Description});
   }
 
   useEffect(() => {
     loadEvent()
-    //navigation.setOptions({ headerTitle: Event.Name });
   } , [])
 
   return (
