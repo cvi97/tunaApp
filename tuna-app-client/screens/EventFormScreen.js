@@ -26,9 +26,7 @@ const EventFormScreen = ({navigation}) => {
     }
   }
   //function to get the date from the date selector component
-  //increments in 1 day the date because javascript return one day off when changes the date to string
   const childToParent = (childData) => {
-    childData.setDate(childData.getDate()+1);
     setEvent({...event, date: childData.getFullYear() + '-' + (childData.getMonth() + 1) + '-' + childData.getDate()})
   }
 

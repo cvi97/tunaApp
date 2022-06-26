@@ -2,7 +2,7 @@ import { View, Text, FlatList, Dimensions, RefreshControl } from 'react-native'
 import React,  {useEffect, useState} from 'react'
 
 import EventItem from './EventItem'
-import { getEvents } from '../api'
+import { getEvents, deleteEvent } from '../api'
 
 const EventList = () => {
 
@@ -18,6 +18,11 @@ const EventList = () => {
     loadEvents() 
   } , [])
 
+  const handleDelete = async (eventid) => {
+    await deleteEvent(eventid);
+    loadEvents();
+  }
+
   // load Events from API when screen is refreshed
   const onRefresh = () => {
     setRefreshing(true);
@@ -25,7 +30,7 @@ const EventList = () => {
   }
 
   const renderItem = ({ item }) => {
-    return <EventItem Event={item} />
+    return <EventItem Event={item} handleDelete={handleDelete}/>
   }
   
   return (

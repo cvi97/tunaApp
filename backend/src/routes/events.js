@@ -45,6 +45,6 @@ router.post('/tunas/:tunaid/events', saveEvent);
  *   description: Use to delete an event by id
  *   tags: [Events]
  */
-router.delete('events/:eventid', deleteEvent);
+router.delete('/events/:eventid', deleteEvent);
 
 export default router;

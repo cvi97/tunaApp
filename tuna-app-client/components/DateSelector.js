@@ -21,7 +21,7 @@ const DataSelector = ({childToParent}) => {
   return (
     // change the button for OpacityOnPress to change the style
     <View>
-      <Button title="Día del evento" color="blue" onPress={showDatePicker} />
+      <Button title="Día del evento" color="grey" onPress={showDatePicker} />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"

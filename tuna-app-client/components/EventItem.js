@@ -2,7 +2,8 @@ import { View, Text, StyleSheet  } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const EventItem = ({Event}) => {
+
+const EventItem = ({Event, handleDelete}) => {
   var date = Event.Date;
   var dateInDateFormat = new Date(date);
   if (date != null) {
@@ -23,8 +24,11 @@ const EventItem = ({Event}) => {
         <Text style={styles.text}>{date}</Text>
     </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.text}>Borrar</Text>
+      <TouchableOpacity 
+        style={styles.deleteButton}
+        onPress={() => handleDelete(Event.EventID)}
+      >
+        <Text >Borrar</Text>
       </TouchableOpacity>
     </View>
   </TouchableOpacity>
@@ -51,6 +55,12 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         paddingTop: 8,
         paddingLeft: 12,
+    },
+    deleteButton: {
+        backgroundColor: 'grey',
+        borderRadius: 7,
+        padding: 7,
+        margin: 10,
     }
 });
 
