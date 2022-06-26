@@ -19,21 +19,19 @@ const EventItem = ({Event, handleDelete, navigation}) => {
   }
 
   return (
+    <View style={[containerStyle,styles.container]}>
     <TouchableOpacity onPress={() => navigation.navigate('EventScreen', {eventid: Event.EventID})}>
-      <View style={[containerStyle,styles.container]}>
-      <TouchableOpacity>
-          <Text style={styles.text}>{Event.Name}</Text>
-          <Text style={styles.text}>{date}</Text>
-      </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.deleteButton}
-          onPress={() => handleDelete(Event.EventID)}
-        >
-          <Text >Borrar</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.text}>{Event.Name}</Text>
+        <Text style={styles.text}>{date}</Text>
     </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.deleteButton}
+        onPress={() => handleDelete(Event.EventID)}
+      >
+        <Text >Borrar</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 

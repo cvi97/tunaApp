@@ -10,6 +10,10 @@ export const getEvents = async (tunaid) => {
     return await res.json();
 }
 
+export const getEvent = async (eventid) => {
+    const res = await fetch(API + '/tunas/1/events/' + eventid);
+    return await res.json();
+}
 
 export const saveEvent = async (event) => {
     const res = await fetch(API + '/tunas/1/events', {
