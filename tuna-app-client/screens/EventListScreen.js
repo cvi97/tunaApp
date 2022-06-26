@@ -8,11 +8,9 @@ import EventList from '../components/EventList'
 import NewButton from '../components/NewButton'
 
 const EventListScreen = ({navigation}) => {
-
   return (
     <Layout>
-      <EventList />
-      <NewButton navigation={navigation} type="event"/>
+      <EventList navigation={navigation}/>
     </Layout>
     
   );

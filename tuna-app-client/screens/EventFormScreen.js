@@ -6,7 +6,6 @@ import Layout from '../components/Layout'
 import { saveEvent } from '../api'
 
 const EventFormScreen = ({navigation}) => {
-
   const [event, setEvent] = useState({
     name: '',
     description: '',

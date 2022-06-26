@@ -12,6 +12,7 @@ import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
 import SignInSreen from './screens/SignInSreen';
 import SignUpScreen from './screens/SignUpScreen';
+import EventScreen from './screens/EventScreen';
 
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
@@ -44,7 +45,13 @@ function EventStackScreen() {
       <EventStack.Screen name="EventForm" component={EventFormScreen} 
         options= {{
           title: "Nuevo evento",
-        }} />
+        }} 
+      />
+      <EventStack.Screen name="EventScreen" component={EventScreen}
+        options= {{
+          title: "Evento",
+        }}
+      />
     </EventStack.Navigator>
   );
 }

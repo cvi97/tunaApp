@@ -4,7 +4,7 @@ import React,  {useEffect, useState} from 'react'
 import EventItem from './EventItem'
 import { getEvents, deleteEvent } from '../api'
 
-const EventList = () => {
+const EventList = ({navigation}) => {
 
   const [Events, setEvents] = useState([])
   const [refreshing, setRefreshing] = useState(false);
@@ -30,7 +30,7 @@ const EventList = () => {
   }
 
   const renderItem = ({ item }) => {
-    return <EventItem Event={item} handleDelete={handleDelete}/>
+    return <EventItem Event={item} handleDelete={handleDelete} navigation={navigation}/>
   }
   
   return (

@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet  } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+//import { useNavigation } from '@react-navigation/native';
 
-
-const EventItem = ({Event, handleDelete}) => {
+const EventItem = ({Event, handleDelete, navigation}) => {
+  //const navigation = useNavigation();
   var date = Event.Date;
   var dateInDateFormat = new Date(date);
   if (date != null) {
@@ -16,22 +17,23 @@ const EventItem = ({Event, handleDelete}) => {
   {
     (dateInDateFormat > today) ? containerStyle = styles.containerFutureEvent : containerStyle = styles.containerPastEvent;
   }
-  return (
-  <TouchableOpacity>
-    <View style={[containerStyle,styles.container]}>
-    <TouchableOpacity>
-        <Text style={styles.text}>{Event.Name}</Text>
-        <Text style={styles.text}>{date}</Text>
-    </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={styles.deleteButton}
-        onPress={() => handleDelete(Event.EventID)}
-      >
-        <Text >Borrar</Text>
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('EventScreen', {eventid: Event.EventID})}>
+      <View style={[containerStyle,styles.container]}>
+      <TouchableOpacity>
+          <Text style={styles.text}>{Event.Name}</Text>
+          <Text style={styles.text}>{date}</Text>
       </TouchableOpacity>
-    </View>
-  </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.deleteButton}
+          onPress={() => handleDelete(Event.EventID)}
+        >
+          <Text >Borrar</Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
   )
 }
 
