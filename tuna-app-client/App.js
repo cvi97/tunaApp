@@ -60,7 +60,11 @@ function SongStackScreen() {
           ),
         })}
       />
-      <SongStack.Screen name="SongForm" component={SongFormScreen} />
+      <SongStack.Screen name="SongForm" component={SongFormScreen} 
+        options= {{
+            title: "Nueva canción",
+          }}
+        />
     </SongStack.Navigator>	
   );
 }
