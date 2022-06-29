@@ -5,15 +5,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NewButton from './components/NewButton'
 import Logo from './assets/logo-tuna.jpg'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './screens/HomeScreen';
 import SongListScreen from './screens/SongListScreen';
 import SongFormScreen from './screens/SongFormScreen';
 import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
+import EventScreen from './screens/EventScreen';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
-import EventScreen from './screens/EventScreen';
+import ConfirmEmailScreen from './screens/ConfirmEmailScreen'
+
 
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
@@ -81,15 +84,47 @@ function SongStackScreen() {
 const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'ios-home'
+                : 'ios-home-outline';
+            } else if (route.name === 'Cancionero') {
+              iconName = focused ? 'ios-musical-note' : 'ios-musical-note-outline';
+            } else if (route.name === 'Eventos') {
+              iconName = focused ? 'ios-list' : 'ios-list-outline';
+            }  
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'grey',
+        })}
+      >
         {isLoggedIn ? (
-          <Tab.Group>
+          <Tab.Group >
             <Tab.Screen name="Eventos" component={EventStackScreen} options={{ headerShown: false }}/>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Cancionero" component={SongStackScreen} options={{ headerShown: false }} />
           </Tab.Group>
         ) : (
-          <Tab.Group>
+          <Tab.Group 
+            screenOptions={{
+              tabBarStyle: { display: "none" },
+            }}
+          >
+            <Tab.Screen name="ConfirmEmail" isLoggedIn={isLoggedIn} component={ConfirmEmailScreen} 
+              options={{
+                title: "Confirma tu cuenta de correo",
+                headerRight: () => (
+                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
+                ),
+              }}
+            />
             <Tab.Screen name="SignIn" component={SignInScreen} 
               options={{
                 title: "Inicio de sesión",
@@ -103,6 +138,7 @@ const App = () => {
                 ),
               }}
             />
+
           </Tab.Group>
         )}
       </Tab.Navigator>

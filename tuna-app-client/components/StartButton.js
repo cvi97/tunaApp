@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     paddingHorizontal: 30,
     marginVertical: 10,
-    width: '50%',
+    width: '55%',
   },
   container_TERTIARY: {
   },

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
 
-const SignUp = ({navigation}) => {
+const SignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [mote, setMote] = useState('')
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SignUp 
+export default SignUpScreen 
