@@ -1,19 +1,19 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import React, {useState} from 'react'
+import { useForm, Controller } from "react-hook-form";
 import Logo from '../assets/logo-tuna.jpg'
 import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
 //import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = ({navigation, route}) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   //const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
-  const onSignInPressed = () => {
-    console.log(email, password)
+  const {control, handleSubmit, formState: {errors}} = useForm();
+
+  const onSignInPressed = (data) => {
+    console.log(data)
   }
   const onForgotPasswordPressed = () => {
     console.log('Forgot password')
@@ -31,9 +31,9 @@ const SignInScreen = ({navigation, route}) => {
           style={[styles.logo, {height: height * 0.3}]} 
           resizeMode="contain"   
         />
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
-        <CustomInput placeholder="Contraseña" value={password} setValue={setPassword} secureTextEntry />
-        <StartButton onPress={onSignInPressed} text="Entrar"/>
+        <CustomInput name="email" placeholder="Email" control={control} rules={{required: true }} />
+        <CustomInput name="password" placeholder="Contraseña" control={control} secureTextEntry rules={{required: true }}/>
+        <StartButton onPress={handleSubmit(onSignInPressed)} text="Entrar"/>
         <StartButton onPress={onSignUpPressed} text="Crear cuenta" bgColor="#D43E3E" fgColor="white"/>
         <StartButton onPress={onForgotPasswordPressed} text="Recuperar contraseña" type="TERTIARY"/>
         

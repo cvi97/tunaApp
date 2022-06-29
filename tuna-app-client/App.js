@@ -117,14 +117,6 @@ const App = () => {
               tabBarStyle: { display: "none" },
             }}
           >
-            <Tab.Screen name="ConfirmEmail" isLoggedIn={isLoggedIn} component={ConfirmEmailScreen} 
-              options={{
-                title: "Confirma tu cuenta de correo",
-                headerRight: () => (
-                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
-                ),
-              }}
-            />
             <Tab.Screen name="SignIn" component={SignInScreen} 
               options={{
                 title: "Inicio de sesión",
@@ -133,6 +125,14 @@ const App = () => {
             <Tab.Screen name="SignUp" isLoggedIn={isLoggedIn} component={SignUpScreen} 
               options={{
                 title: "Crea una cuenta",
+                headerRight: () => (
+                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
+                ),
+              }}
+            />
+            <Tab.Screen name="ConfirmEmail" isLoggedIn={isLoggedIn} component={ConfirmEmailScreen} 
+              options={{
+                title: "Confirma tu cuenta de correo",
                 headerRight: () => (
                   <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
                 ),
