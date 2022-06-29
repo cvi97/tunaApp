@@ -1,23 +1,24 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native'
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NewButton from './components/NewButton'
+import Logo from './assets/logo-tuna.jpg'
 
 import HomeScreen from './screens/HomeScreen';
 import SongListScreen from './screens/SongListScreen';
 import SongFormScreen from './screens/SongFormScreen';
 import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
-import SignInSreen from './screens/SignInSreen';
+import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import EventScreen from './screens/EventScreen';
 
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 const MyTheme = {
   ...DefaultTheme,
@@ -89,8 +90,19 @@ const App = () => {
           </Tab.Group>
         ) : (
           <Tab.Group>
-            <Tab.Screen name="SignIn" component={SignInSreen} />
-            <Tab.Screen name="SignUp" component={SignUpScreen} />
+            <Tab.Screen name="SignIn" component={SignInScreen} 
+              options={{
+                title: "Inicio de sesión",
+              }}
+            />
+            <Tab.Screen name="SignUp" isLoggedIn={isLoggedIn} component={SignUpScreen} 
+              options={{
+                title: "Crea una cuenta",
+                headerRight: () => (
+                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
+                ),
+              }}
+            />
           </Tab.Group>
         )}
       </Tab.Navigator>

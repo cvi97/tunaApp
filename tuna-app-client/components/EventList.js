@@ -4,6 +4,7 @@ import React,  {useEffect, useState} from 'react'
 import EventItem from './EventItem'
 import { getEvents, deleteEvent } from '../api'
 
+
 const EventList = ({navigation}) => {
 
   const [Events, setEvents] = useState([])
@@ -15,8 +16,11 @@ const EventList = ({navigation}) => {
   }
 
   useEffect(() => {
-    loadEvents() 
-  } , [])
+    const whenFocus = navigation.addListener('focus', () => {
+      loadEvents()
+    });
+     return whenFocus;
+  } , [navigation])
 
   const handleDelete = async (eventid) => {
     await deleteEvent(eventid);

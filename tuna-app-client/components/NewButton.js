@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 
-const NewButton = ({navigation, route, type}) => {
+const NewButton = ({navigation, type}) => {
 	var screen, buttonText;
 	if (type === 'event') {
 		screen = 'EventForm'
