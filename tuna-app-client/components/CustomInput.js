@@ -35,16 +35,20 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		borderWidth: 1,
 		borderColor: 'grey',
-		marginVertical: 10,
+		marginBottom: 3,
+		marginTop:7,
+		paddingVertical: 8,
 		paddingHorizontal: 10,
 	},
 	input: {
+		fontSize: 16,
 	},
 	error: {
 		color: 'red',
-		fontSize: 12,
+		fontSize: 13,
 		alignSelf: 'stretch',
 		marginLeft: 50,
+		marginBottom: 5,
 	}
 })
     

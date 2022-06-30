@@ -14,6 +14,7 @@ const SignInScreen = ({navigation, route}) => {
 
   const onSignInPressed = (data) => {
     console.log(data)
+    navigation.navigate("WaitConfirmation")
   }
   const onForgotPasswordPressed = () => {
     navigation.navigate("ForgotPassword")
@@ -42,7 +43,7 @@ const SignInScreen = ({navigation, route}) => {
           placeholder="Contraseña" 
           control={control} 
           secureTextEntry 
-          rules={{required: 'Contraseña requerida', minLength: {value: 6, message: 'Contraseña muy corta'}}}
+          rules={{required: 'Contraseña requerida'}}
         />
         <StartButton onPress={handleSubmit(onSignInPressed)} text="Entrar"/>
         <StartButton onPress={onSignUpPressed} text="Crear cuenta" bgColor="#D43E3E" fgColor="white"/>

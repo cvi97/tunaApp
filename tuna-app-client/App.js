@@ -16,13 +16,15 @@ import EventScreen from './screens/EventScreen';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ConfirmEmailScreen from './screens/ConfirmEmailScreen'
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
+import WaitConfirmationScreen from './screens/WaitConfirmationScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
 
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const isLoggedIn = false;
+const isLoggedIn = "tuno";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -145,6 +147,19 @@ const App = () => {
                 headerRight: () => (
                   <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
                 ),
+              }}
+            />
+            <Tab.Screen name="ResetPassword" isLoggedIn={isLoggedIn} component={ResetPasswordScreen} 
+              options={{
+                title: "Hemos enviado un código a tu correo",
+                headerRight: () => (
+                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
+                ),
+              }}
+            />
+            <Tab.Screen name="WaitConfirmation" isLoggedIn={isLoggedIn} component={WaitConfirmationScreen} 
+              options={{
+                title: "Toca esperar"
               }}
             />
 

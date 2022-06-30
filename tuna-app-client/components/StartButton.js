@@ -33,15 +33,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#BB1616",
     elevation: 8,
     borderRadius: 5,
-    paddingVertical: 7,
+    paddingVertical: 10,
     paddingHorizontal: 30,
-    marginVertical: 10,
-    width: '55%',
+    marginVertical: 16,
+    width: '70%',
   },
   container_TERTIARY: {
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "white",
     fontWeight: "bold",
     alignSelf: "center"

@@ -7,34 +7,36 @@ import StartButton from '../components/StartButton'
 //import { useNavigation } from '@react-navigation/native';
 
 const ForgotPasswordScreen = ({navigation, route}) => {
-  //const navigation = useNavigation();
+
   const {height} = useWindowDimensions();
 
   const {control, handleSubmit, formState: {errors}} = useForm();
 
-  const onSignInPressed = (data) => {
+  const onSendPressed= (data) => {
     console.log(data)
+    navigation.navigate("ResetPassword")
   }
-  const onForgotPasswordPressed = () => {
-    navigation.navigate("ForgotPassword")
-  }
-  const onSignUpPressed = () => {
-    navigation.navigate("SignUp")
+  const onSignInPressed = () => {
+    navigation.navigate("SignIn")
   }
 
   //Everything inside the ScrollView is scrollable so if the phone is small all the buttons are reachable
   return (
     <ScrollView style={{backgroundColor:'#F3D69D'}}>
       <View style={styles.root}>
+        <Image 
+          source={Logo} 
+          style={[styles.logo, {height: height * 0.3}]} 
+          resizeMode="contain"   
+        />
         <CustomInput 
           name="email" 
           placeholder="Email" 
           control={control} 
           rules={{required: 'Email requerido' }} 
         />
-        <StartButton onPress={handleSubmit(onSignInPressed)} text="Entrar"/>
-        <StartButton onPress={onSignUpPressed} text="Crear cuenta" bgColor="#D43E3E" fgColor="white"/>
-        <StartButton onPress={onForgotPasswordPressed} text="Recuperar contraseña" type="TERTIARY"/>
+        <StartButton onPress={handleSubmit(onSendPressed)} text="Enviar"/>
+        <StartButton onPress={onSignInPressed} text="Volver a inicio" bgColor="#D43E3E" fgColor="white"/>
         
       </View>
     </ScrollView>
@@ -47,7 +49,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#F3D69D',
-    marginTop: 100
   },
   logo: {
     width: '50%',

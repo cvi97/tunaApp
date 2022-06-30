@@ -1,20 +1,16 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import React, {useState} from 'react'
+import { useForm, Controller } from "react-hook-form";
 import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
 
 const SignUpScreen = ({navigation}) => {
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [mote, setMote] = useState('')
-  const [password, setPassword] = useState('')
-  const [tunaCode, setTunaCode] = useState('')
 
-  //const navigation = useNavigation();
-  const {height} = useWindowDimensions();
+  const {control, handleSubmit, formState: {errors}} = useForm();
 
-  const onSignUpPressed = () => {
-    console.log(email, password)
+
+  const onSignUpPressed = (data) => {
+    console.log(data)
   }
   const onSignInPressed = () => {
     navigation.navigate("SignIn")
@@ -25,16 +21,45 @@ const SignUpScreen = ({navigation}) => {
     <ScrollView style={{backgroundColor:'#F3D69D'}}>
       <View style={styles.root}>
         <Text style={styles.text}>Email:</Text>
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        <CustomInput 
+          name="email"
+          placeholder="Email" 
+          control={control}
+          rules={{required: 'Email requerido', pattern: {
+            value: /\S+@\S+\.\S+/,
+            message: "Formato email inválido"
+          } }}
+        />
         <Text style={styles.text}>Tu nombre:</Text>
-        <CustomInput placeholder="Nombre" value={name} setValue={setName} />
+        <CustomInput 
+          name="name"
+          placeholder="Nombre" 
+          control={control}
+          rules={{required: 'Nombre requerido', maxLength: {value: 25, message: "Nombre demasiado largo"} }}
+        />
         <Text style={styles.text}>¿Cómo te llaman en la tuna?</Text>
-        <CustomInput placeholder="Mote" value={mote} setValue={setMote} />
+        <CustomInput 
+          name="mote"
+          placeholder="Mote"
+          control={control}
+          rules={{required: 'Mote requerido', maxLength: {value: 20, message: "Mote demasiado largo"}}}
+        />
         <Text style={styles.text}>Elige una contraseña</Text>
-        <CustomInput placeholder="Contraseña" value={password} setValue={setPassword} secureTextEntry />
+        <CustomInput 
+          name="password"
+          placeholder="Contraseña" 
+          control={control}
+          rules={{required: 'Contraseña requerida', minLength: {value: 6, message: 'Contraseña muy corta'}}}
+          secureTextEntry
+        />
         <Text style={styles.text}>Código de tu tuna:</Text>
-        <CustomInput placeholder="Código de tu Tuna" value={tunaCode} setValue={setTunaCode} />
-        <StartButton onPress={onSignUpPressed} text="Registrarse"/>
+        <CustomInput 
+          name="code"
+          placeholder="Código de tu Tuna"
+          control={control}
+          rules={{required: 'Código requerido' }}
+        />
+        <StartButton onPress={handleSubmit(onSignUpPressed)} text="Registrarse"/>
         <StartButton onPress={onSignInPressed} text="¿Ya tienes una cuenta? Inicia sesión" type="TERTIARY"/>
         
       </View>
@@ -48,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#F3D69D',
-    marginTop: 40,
+    marginTop: 5,
   },
   text : {
     fontSize: 14,
