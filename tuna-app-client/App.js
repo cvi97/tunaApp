@@ -16,6 +16,7 @@ import EventScreen from './screens/EventScreen';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ConfirmEmailScreen from './screens/ConfirmEmailScreen'
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
 
 const EventStack = createStackNavigator();
@@ -133,6 +134,14 @@ const App = () => {
             <Tab.Screen name="ConfirmEmail" isLoggedIn={isLoggedIn} component={ConfirmEmailScreen} 
               options={{
                 title: "Confirma tu cuenta de correo",
+                headerRight: () => (
+                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
+                ),
+              }}
+            />
+            <Tab.Screen name="ForgotPassword" isLoggedIn={isLoggedIn} component={ForgotPasswordScreen} 
+              options={{
+                title: "Renovar contraseña",
                 headerRight: () => (
                   <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
                 ),

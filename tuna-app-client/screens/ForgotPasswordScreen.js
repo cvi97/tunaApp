@@ -6,7 +6,7 @@ import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
 //import { useNavigation } from '@react-navigation/native';
 
-const SignInScreen = ({navigation, route}) => {
+const ForgotPasswordScreen = ({navigation, route}) => {
   //const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
@@ -26,23 +26,11 @@ const SignInScreen = ({navigation, route}) => {
   return (
     <ScrollView style={{backgroundColor:'#F3D69D'}}>
       <View style={styles.root}>
-        <Image 
-          source={Logo} 
-          style={[styles.logo, {height: height * 0.3}]} 
-          resizeMode="contain"   
-        />
         <CustomInput 
           name="email" 
           placeholder="Email" 
           control={control} 
           rules={{required: 'Email requerido' }} 
-        />
-        <CustomInput 
-          name="password" 
-          placeholder="Contraseña" 
-          control={control} 
-          secureTextEntry 
-          rules={{required: 'Contraseña requerida', minLength: {value: 6, message: 'Contraseña muy corta'}}}
         />
         <StartButton onPress={handleSubmit(onSignInPressed)} text="Entrar"/>
         <StartButton onPress={onSignUpPressed} text="Crear cuenta" bgColor="#D43E3E" fgColor="white"/>
@@ -59,6 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#F3D69D',
+    marginTop: 100
   },
   logo: {
     width: '50%',
@@ -68,4 +57,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SignInScreen
+export default ForgotPasswordScreen

@@ -13,7 +13,7 @@ const SignUpScreen = ({navigation}) => {
   //const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
-  const onRegisterPressed = () => {
+  const onSignUpPressed = () => {
     console.log(email, password)
   }
   const onSignInPressed = () => {
@@ -34,7 +34,7 @@ const SignUpScreen = ({navigation}) => {
         <CustomInput placeholder="Contraseña" value={password} setValue={setPassword} secureTextEntry />
         <Text style={styles.text}>Código de tu tuna:</Text>
         <CustomInput placeholder="Código de tu Tuna" value={tunaCode} setValue={setTunaCode} />
-        <StartButton onPress={onRegisterPressed} text="Registrarse"/>
+        <StartButton onPress={onSignUpPressed} text="Registrarse"/>
         <StartButton onPress={onSignInPressed} text="¿Ya tienes una cuenta? Inicia sesión" type="TERTIARY"/>
         
       </View>
