@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { deleteTuna, getTuna, getTunas, getNumerOfUsers, saveTuna, deleteAllTunas, getUsersTuna } from '../controllers/tunas'
+import { deleteTuna, getTuna, getTunas, getNumerOfUsers, saveTuna, deleteAllTunas, getUsersByTuna } from '../controllers/tunas'
 
 const router = Router();
 
@@ -36,7 +36,7 @@ router.get('/tunas/:tunaid/countofusers', getNumerOfUsers)
  *   description: Use to get all users in a tuna
  *   tags: [Tunas]
  */
-router.get('/tunas/:id/users', getUsersTuna)
+router.get('/tunas/:id/users', getUsersByTuna)
 
 
 /**

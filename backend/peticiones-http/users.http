@@ -8,8 +8,6 @@ GET {{api}}/tunas/1/users
 ### Get one user by id
 GET {{api}}/users/1
 
-### Get user password by id
-GET {{api}}/users/1/password
 
 ### Crear un usuario en una tuna
 Post {{api}}/tunas/1/users
@@ -48,3 +46,25 @@ Content-Type: application/json
 
 ### Delete user
 DELETE {{api}}/users/7
+
+### Create user
+POST {{api}}/users
+Content-Type: application/json
+
+{
+    "name": "Carlos Vidal",
+    "email": "cvi1@alu.ua.es",
+    "mote": "El 64",
+    "tunaid": 1,
+    "password": "123456"
+}
+
+###
+POST {{api}}/users/login
+Content-Type: application/json
+
+{
+    "email": "cvi1@alu.ua.es",
+    "password": "123456"
+}
+

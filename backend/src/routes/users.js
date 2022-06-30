@@ -1,5 +1,5 @@
 import { Router } from "express";   // import Router from express
-import { getUsers, saveUser, updateUserMote, updateUserPassword, getUser, getUserPassword, updateUserRole, deleteUser } from "../controllers/users";    // import the getUsers function from the users.js file
+import { getUsers, saveUser, updateUserMote, updateUserPassword, getUserById, getUserPassword, updateUserRole, deleteUser, login } from "../controllers/users";    // import the getUsers function from the users.js file
 
 const router = Router();    
 
@@ -26,7 +26,7 @@ router.get('/users', getUsers);
  *   description: Use to get one user by id
  *   tags: [Users]
  */
-router.get('/users/:userid', getUser);   // get the user with the userid
+router.get('/users/:userid', getUserById);   // get the user with the userid
 
 /**
  * @swagger
@@ -39,12 +39,12 @@ router.get('/users/:userid/password', getUserPassword);   // get the user's pass
 
 /**
  * @swagger
- * /tunas/{tunaId}/users:
+ * /users:
  *  post:
  *   description: Use to save a user to a tuna
  *   tags: [Users]
  */ 
-router.post('/tunas/:tunaid/users', saveUser);
+router.post('/users', saveUser);
 
 /**
  * @swagger
@@ -81,5 +81,14 @@ router.put('/users/:userid/update_role', updateUserRole);
  *   tags: [Users]
  */
 router.delete('/users/:userid', deleteUser);
+
+/**
+ * @swagger
+ * /users/login:
+ *  post:
+ *   description: Use to login a user
+ *   tags: [Users]
+ */
+router.post('/users/login', login);
 
 export default router;
