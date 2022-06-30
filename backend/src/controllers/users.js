@@ -40,7 +40,7 @@ export const saveUser = async (req, res) => {
     const [rows] = await connection.query("SELECT COUNT(UserID) FROM Users WHERE Email = ?;", [email]);
     connection.end();
     if (rows[0]['COUNT(UserID)'] <= 0) {
-        bcrypt.hash(req.body.password, 10, async function(err, hash) {
+        bcrypt.hash(password, 10, async function(err, hash) {
             if(err) {
                 res.status(500).json({
                     error: 'No se ha podido encriptar la contraseña'
@@ -106,7 +106,8 @@ export const login = async (req, res) => {
     const [rows] = await connection.query("SELECT * FROM Users WHERE Email = ?;", [email]);
     connection.end();
     if(rows.length > 0) {
-        bcrypt.compare(password, rows[0].Password, function(err, result) {
+        // Check if password is correct
+        bcrypt.compare(password, rows[0].Password, function(err, result) {  
             if(err) {
                 res.status(500).json({
                     error: 'Error al verificar las contraseñas'
@@ -114,7 +115,8 @@ export const login = async (req, res) => {
             }
             else {
                 if(result) {
-                    jwt.sign({ userID: rows[0].UserID }, process.env.JWT_SECRET, { expiresIn: '150h' }, (err, token) => {
+                    // Create JWT Payload - Contains User Data 
+                    jwt.sign({ userID: rows[0].UserID, tunaID: rows[0].Tuna }, process.env.JWT_SECRET, { expiresIn: '150h' }, (err, token) => {
                         if(err) {
                             res.status(500).json({
                                 error: 'Error al generar el token'

@@ -14,7 +14,7 @@ Content-Type: application/json
 {
     "name": "Cena en Casa Julia",
     "description": "Descripcion del evento",
-    "creator": "1",
+    "creator": "14",
     "date": "2017-02-01",
     "tuna": "1"
 }
