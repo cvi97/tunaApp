@@ -5,10 +5,12 @@ import Logo from '../assets/logo-tuna.jpg'
 import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
 import { enableExpoCliLogging } from 'expo/build/logs/Logs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { logIn } from '../api';
 //import { useNavigation } from '@react-navigation/native';
 
-const SignInScreen = ({navigation, route}) => {
+const SignInScreen = ({navigation, route, refreshToken}) => {
   //const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
@@ -20,7 +22,14 @@ const SignInScreen = ({navigation, route}) => {
       Alert.alert('Error', 'Usuario y contraseña no se corresponden a ninguna cuenta registrada')
     }
     else {
-      navigation.navigate('EventList')
+      try {
+        await AsyncStorage.setItem('@token', response.token)
+        refreshToken();
+      } catch (e) {
+        console.log(e)
+      }
+      //console.log(await AsyncStorage.getItem('@token'))
+      //isLoggedIn = true;
     }
   }
   const onForgotPasswordPressed = () => {

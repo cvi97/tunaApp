@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import React from 'react'
 
 
-const NewButton = ({navigation, type}) => {
+const NewButton = ({navigation, type, setToken}) => {
 	var screen, buttonText;
 	if (type === 'event') {
 		screen = 'EventForm'
@@ -12,8 +14,18 @@ const NewButton = ({navigation, type}) => {
 		screen = 'SongForm'
 		buttonText = 'Nueva canción'
 	}
+  else if (type === 'logout') {
+    buttonText = 'Cerrar sesión'
+  }
+
+  const removeToken = () => {
+    AsyncStorage.removeItem('@token').then(() => {
+      setToken(null);
+    })
+  }
+
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate(screen)}>
+    <TouchableOpacity style={styles.buttonContainer} onPress={screen ? (() => navigation.navigate(screen)) : (removeToken)}>
         <Text style={styles.buttonText}>{buttonText}</Text>
     </TouchableOpacity>
   )

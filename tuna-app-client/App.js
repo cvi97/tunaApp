@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native'
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme, StackActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NewButton from './components/NewButton'
@@ -20,7 +20,7 @@ import ConfirmEmailScreen from './screens/ConfirmEmailScreen'
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import WaitConfirmationScreen from './screens/WaitConfirmationScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
-
+import SplashScreen from './screens/SplashScreen';
 
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
@@ -38,6 +38,7 @@ const MyTheme = {
     TabBarText: '#566573',
   },
 };
+
 
 function EventStackScreen() {
   return (
@@ -86,6 +87,27 @@ function SongStackScreen() {
 
 
 const App = () => {
+  const [token, setToken] = useState(null);
+  const refreshToken = () => {
+    AsyncStorage.getItem('@token') .then(token => {
+      setToken(token);
+    }) .catch(err => {
+      console.log(err);
+    })
+  }
+  useEffect(() => {
+    refreshToken();
+  } , [])
+  console.log("APP SE RENDERIZA")
+  console.log({token})
+  AsyncStorage.getAllKeys((err, keys) => {
+    AsyncStorage.multiGet(keys, (error, stores) => {
+      stores.map((result, i, store) => {
+        console.log({ [store[i][0]]: store[i][1] });
+        return true;
+      });
+    });
+  });
   return (
     <NavigationContainer theme={MyTheme}>
       <Tab.Navigator
@@ -109,10 +131,17 @@ const App = () => {
           tabBarInactiveTintColor: 'grey',
         })}
       >
-        {isLoggedIn ? (
+        {token ? (
           <Tab.Group >
             <Tab.Screen name="Eventos" component={EventStackScreen} options={{ headerShown: false }}/>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={HomeScreen} 
+              options={{
+                title: "Inicio",
+                headerRight: () => (
+                  <NewButton type="logout" setToken={setToken}/>
+                ),
+              }}
+            />
             <Tab.Screen name="Cancionero" component={SongStackScreen} options={{ headerShown: false }} />
           </Tab.Group>
         ) : (
@@ -121,12 +150,12 @@ const App = () => {
               tabBarStyle: { display: "none" },
             }}
           >
-            <Tab.Screen name="SignIn" component={SignInScreen} 
+            <Tab.Screen name="SignIn"  children={() => <SignInScreen refreshToken={refreshToken}/>} 
               options={{
                 title: "Inicio de sesión",
               }}
             />
-            <Tab.Screen name="SignUp" isLoggedIn={isLoggedIn} component={SignUpScreen} 
+            <Tab.Screen name="SignUp" component={SignUpScreen} 
               options={{
                 title: "Crea una cuenta",
                 headerRight: () => (
@@ -134,7 +163,7 @@ const App = () => {
                 ),
               }}
             />
-            <Tab.Screen name="ConfirmEmail" isLoggedIn={isLoggedIn} component={ConfirmEmailScreen} 
+            <Tab.Screen name="ConfirmEmail" component={ConfirmEmailScreen} 
               options={{
                 title: "Confirma tu cuenta de correo",
                 headerRight: () => (
@@ -142,7 +171,7 @@ const App = () => {
                 ),
               }}
             />
-            <Tab.Screen name="ForgotPassword" isLoggedIn={isLoggedIn} component={ForgotPasswordScreen} 
+            <Tab.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
               options={{
                 title: "Renovar contraseña",
                 headerRight: () => (
@@ -150,7 +179,7 @@ const App = () => {
                 ),
               }}
             />
-            <Tab.Screen name="ResetPassword" isLoggedIn={isLoggedIn} component={ResetPasswordScreen} 
+            <Tab.Screen name="ResetPassword" component={ResetPasswordScreen} 
               options={{
                 title: "Hemos enviado un código a tu correo",
                 headerRight: () => (
@@ -158,7 +187,7 @@ const App = () => {
                 ),
               }}
             />
-            <Tab.Screen name="WaitConfirmation" isLoggedIn={isLoggedIn} component={WaitConfirmationScreen} 
+            <Tab.Screen name="WaitConfirmation" component={WaitConfirmationScreen} 
               options={{
                 title: "Toca esperar"
               }}

@@ -1,5 +1,8 @@
-const API = "http://10.0.2.2:3000"
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE1LCJ0dW5hSUQiOjEsInJvbGUiOiJ0dW5vIiwiaWF0IjoxNjU2NjcyNzY5LCJleHAiOjE2NTcyMTI3Njl9.f4BgatzSCqfGIieSo-s6gs2EUQ2Tv_xP4Zfp3WZDjC8'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const API = "http://10.0.2.2:3000";
+//const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE1LCJ0dW5hSUQiOjEsInJvbGUiOiJ0dW5vIiwiaWF0IjoxNjU2NjcyNzY5LCJleHAiOjE2NTcyMTI3Njl9.f4BgatzSCqfGIieSo-s6gs2EUQ2Tv_xP4Zfp3WZDjC8'
+
 
 
 export const logIn = async (data) => {
@@ -20,6 +23,7 @@ export const getSongs = async (tunaid) => {
 }
 
 export const getEvents = async (tunaid) => {
+    const TOKEN = await AsyncStorage.getItem('@token');
     const res = await fetch(API + '/events', {
         method: 'GET',
         headers: {
@@ -36,6 +40,7 @@ export const getEvent = async (eventid) => {
 }
 
 export const saveEvent = async (event) => {
+    const TOKEN = await AsyncStorage.getItem('@token');
     const res = await fetch(API + '/events', {
         method: 'POST',
         headers: {
