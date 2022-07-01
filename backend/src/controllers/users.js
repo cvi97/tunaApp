@@ -116,7 +116,7 @@ export const login = async (req, res) => {
             else {
                 if(result) {
                     // Create JWT Payload - Contains User Data 
-                    jwt.sign({ userID: rows[0].UserID, tunaID: rows[0].Tuna }, process.env.JWT_SECRET, { expiresIn: '150h' }, (err, token) => {
+                    jwt.sign({ userID: rows[0].UserID, tunaID: rows[0].Tuna, role: rows[0].Role }, process.env.JWT_SECRET, { expiresIn: '150h' }, (err, token) => {
                         if(err) {
                             res.status(500).json({
                                 error: 'Error al generar el token'

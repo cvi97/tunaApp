@@ -1,8 +1,10 @@
 import { connect } from "../database";
 
+
 export const getEventsFromTuna = async (req, res) => {
+    console.log(req.user)
     const connection = await connect();
-    const tunaId = req.params.tunaid;
+    const tunaId = req.tunaid;
     const [rows] = await connection.query("SELECT * FROM Events WHERE Tuna = ?;", [tunaId]);
     connection.end();
     res.json(rows);
@@ -29,10 +31,10 @@ export const getEventUsers = async (req, res) => {
 
 
 export const saveEvent = async (req, res) => {
+    const tunaid = req.tunaid;
     const name = req.body.name;
     const description = req.body.description;
     const creator = req.body.creator;
-    const tunaid = req.params.tunaid;
     const date = req.body.date;
     const connection = await connect();
     const results = await connection.query("INSERT INTO Events (Name, Description, Creator, Tuna, Date) VALUES (?, ?, ?, ?, ?);", [name, description, creator, tunaid, date]);
@@ -41,8 +43,8 @@ export const saveEvent = async (req, res) => {
 }
 
 //saves the user that is attending the event
-export const saveUserEvent = async (req, res) => {
-    const user = req.body.user;
+export const saveUserIntoEvent = async (req, res) => {
+    const user = req.userID;
     const eventid = req.body.eventid;
     const connection = await connect();
     const results = await connection.query("INSERT INTO UserEvent (User, EventID) VALUES (?, ?);", [user, eventid]);

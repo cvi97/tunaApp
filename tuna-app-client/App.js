@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NewButton from './components/NewButton'
 import Logo from './assets/logo-tuna.jpg'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HomeScreen from './screens/HomeScreen';
 import SongListScreen from './screens/SongListScreen';
@@ -24,7 +25,7 @@ import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const isLoggedIn = "tuno";
+const isLoggedIn = "";
 
 const MyTheme = {
   ...DefaultTheme,

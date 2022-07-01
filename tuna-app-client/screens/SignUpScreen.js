@@ -11,6 +11,7 @@ const SignUpScreen = ({navigation}) => {
 
   const onSignUpPressed = (data) => {
     console.log(data)
+    navigation.navigate("WaitConfirmation")
   }
   const onSignInPressed = () => {
     navigation.navigate("SignIn")

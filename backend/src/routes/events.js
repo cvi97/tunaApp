@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { getEventsFromTuna, getEvent, saveEvent, deleteEvent, getEventUsers, saveUserEvent } from '../controllers/events';
+import { getEventsFromTuna, getEvent, saveEvent, deleteEvent, getEventUsers, saveUserIntoEvent } from '../controllers/events';
+import { validateToken } from "../validate-token";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ const router = Router();
  *   description: Use to get all events from a tuna
  *   tags: [Events]
  */
-router.get('/tunas/:tunaid/events', getEventsFromTuna);
+router.get('/events', validateToken, getEventsFromTuna);
 
 /**
  * @swagger
@@ -45,7 +46,7 @@ router.get('/events/:eventid/users', getEventUsers);
  *   description: Use to save an event to a tuna
  *   tags: [Events]
  */
-router.post('/tunas/:tunaid/events', saveEvent);
+router.post('/events', validateToken, saveEvent);
 
 /**
  * @swagger
@@ -54,7 +55,7 @@ router.post('/tunas/:tunaid/events', saveEvent);
  *   description: Use to save a user to an event
  *   tags: [Events]
  */
-router.post('/events/:eventid/users/:userid', saveUserEvent);
+router.post('/events/:eventid/users', validateToken, saveUserIntoEvent);
 
 /**
  * @swagger

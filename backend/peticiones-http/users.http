@@ -52,11 +52,11 @@ POST {{api}}/users
 Content-Type: application/json
 
 {
-    "name": "Carlos Vidal",
-    "email": "cvi1@alu.ua.es",
-    "mote": "El 64",
+    "name": "a",
+    "email": "a",
+    "mote": "El a",
     "tunaid": 1,
-    "password": "123456"
+    "password": "a"
 }
 
 ###
@@ -66,5 +66,14 @@ Content-Type: application/json
 {
     "email": "cvi1@alu.ua.es",
     "password": "123456"
+}
+
+###
+POST {{api}}/users/login
+Content-Type: application/json
+
+{
+    "email": "a",
+    "password": "a"
 }
 

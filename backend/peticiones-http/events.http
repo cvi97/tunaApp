@@ -1,15 +1,18 @@
 @api = http://localhost:3000
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE1LCJ0dW5hSUQiOjEsImlhdCI6MTY1NjY2OTAyOSwiZXhwIjoxNjU3MjA5MDI5fQ.c9cOuiDVuUP6zUnAPtcYMRWRaGS2gZ7ubj_SQHdBI5g
 
 ### 
-GET {{api}}/tunas/1/events
+GET {{api}}/events
+Authorization: {{token}}
+
 
 ###
 GET {{api}}/tunas/1/events/2
 
 ###
-POST {{api}}/tunas/1/events
+POST {{api}}/events
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "name": "Cena en Casa Julia",

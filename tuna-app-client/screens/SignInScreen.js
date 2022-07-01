@@ -1,9 +1,11 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native'
 import React, {useState} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import Logo from '../assets/logo-tuna.jpg'
 import CustomInput from '../components/CustomInput'
 import StartButton from '../components/StartButton'
+import { enableExpoCliLogging } from 'expo/build/logs/Logs';
+import { logIn } from '../api';
 //import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = ({navigation, route}) => {
@@ -12,9 +14,14 @@ const SignInScreen = ({navigation, route}) => {
 
   const {control, handleSubmit, formState: {errors}} = useForm();
 
-  const onSignInPressed = (data) => {
-    console.log(data)
-    navigation.navigate("WaitConfirmation")
+  const onSignInPressed = async (data) => {
+    const response = await logIn(data)
+    if(response.error) {
+      Alert.alert('Error', 'Usuario y contraseña no se corresponden a ninguna cuenta registrada')
+    }
+    else {
+      navigation.navigate('EventList')
+    }
   }
   const onForgotPasswordPressed = () => {
     navigation.navigate("ForgotPassword")
