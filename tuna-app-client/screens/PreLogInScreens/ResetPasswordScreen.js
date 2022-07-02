@@ -1,8 +1,8 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import React, {useState} from 'react'
 import { useForm, Controller } from "react-hook-form";
-import CustomInput from '../components/CustomInput'
-import StartButton from '../components/StartButton'
+import CustomInput from '../../components/CustomInput'
+import StartButton from '../../components/StartButton'
 
 const ResetPasswordScreen = ({navigation}) => {
 

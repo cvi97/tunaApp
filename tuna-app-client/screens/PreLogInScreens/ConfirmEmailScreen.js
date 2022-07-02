@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import React, {useState} from 'react'
-import CustomInput from '../components/CustomInput'
-import StartButton from '../components/StartButton'
+import CustomInput from '../../components/CustomInput'
+import StartButton from '../../components/StartButton'
 
 const ConfirmEmailScreen = ({navigation}) => {
   const [code, setCode] = useState('');

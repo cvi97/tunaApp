@@ -1,9 +1,9 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import React, {useState} from 'react'
 import { useForm, Controller } from "react-hook-form";
-import Logo from '../assets/logo-tuna.jpg'
-import CustomInput from '../components/CustomInput'
-import StartButton from '../components/StartButton'
+import Logo from '../../assets/logo-tuna.jpg'
+import CustomInput from '../../components/CustomInput'
+import StartButton from '../../components/StartButton'
 //import { useNavigation } from '@react-navigation/native';
 
 const ForgotPasswordScreen = ({navigation, route}) => {

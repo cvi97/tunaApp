@@ -111,10 +111,15 @@ export const login = async (req, res) => {
             if(err) {
                 res.status(500).json({
                     error: 'Error al verificar las contraseñas'
-        });
+                });
             }
             else {
-                if(result) {
+                if(result && (rows[0].isConfirmed == 0)) {
+                    res.status(500).json({
+                        error: 'Usuario no confirmado'
+                    });
+                }
+                else if(result) {
                     // Create JWT Payload - Contains User Data 
                     jwt.sign({ userID: rows[0].UserID, tunaID: rows[0].Tuna, role: rows[0].Role }, process.env.JWT_SECRET, { expiresIn: '150h' }, (err, token) => {
                         if(err) {
@@ -143,4 +148,12 @@ export const login = async (req, res) => {
             error: 'Usuario no encontrado'
         });
     }
+}
+
+export const confirmUser = async (req, res) => {
+    const userid = req.params.userid;
+    const connection = await connect();
+    const [rows] = await connection.query("UPDATE Users SET isConfirmed = 1 WHERE UserID = ?;", [userid]);
+    connection.end();
+    res.send(rows);
 }

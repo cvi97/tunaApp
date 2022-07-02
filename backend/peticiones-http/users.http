@@ -1,4 +1,5 @@
 @api = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE1LCJ0dW5hSUQiOjEsInJvbGUiOiJhZG1pblR1bmEiLCJpYXQiOjE2NTY3NDk0NTQsImV4cCI6MTY1NzI4OTQ1NH0.R-BnaKcpfa1nzlKInaZsct8V1UI3ZT9dPuMN44MpqUQ
 
 GET {{api}}/users
 
@@ -73,7 +74,12 @@ POST {{api}}/users/login
 Content-Type: application/json
 
 {
-    "email": "a",
-    "password": "a"
+    "email": "cvi1@alu.ua.es",
+    "password": "123456"
 }
+
+###
+PUT {{api}}/users/confirm/16
+Authorization: {{token}}
+Content-Type: application/json
 

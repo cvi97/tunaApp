@@ -1,25 +1,27 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native'
 import React, {useState} from 'react'
 import { useForm, Controller } from "react-hook-form";
-import Logo from '../assets/logo-tuna.jpg'
-import CustomInput from '../components/CustomInput'
-import StartButton from '../components/StartButton'
-import { enableExpoCliLogging } from 'expo/build/logs/Logs';
+import Logo from '../../assets/logo-tuna.jpg'
+import CustomInput from '../../components/CustomInput'
+import StartButton from '../../components/StartButton'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { logIn } from '../api';
-//import { useNavigation } from '@react-navigation/native';
+import { logIn } from '../../api';
+import { useNavigation } from '@react-navigation/native';
 
-const SignInScreen = ({navigation, route, refreshToken}) => {
-  //const navigation = useNavigation();
+const SignInScreen = ({ route, refreshToken}) => {
+  const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
   const {control, handleSubmit, formState: {errors}} = useForm();
 
   const onSignInPressed = async (data) => {
     const response = await logIn(data)
-    if(response.error) {
+    if((response.error == "Contraseña incorrecta") || (response.error == "Usuario no encontrado")) {
       Alert.alert('Error', 'Usuario y contraseña no se corresponden a ninguna cuenta registrada')
+    }
+    else if(response.error == "Usuario no confirmado") {
+      navigation.navigate("WaitConfirmation")
     }
     else {
       try {

@@ -1,5 +1,6 @@
 import { Router } from "express";   // import Router from express
-import { getUsers, saveUser, updateUserMote, updateUserPassword, getUserById, getUserPassword, updateUserRole, deleteUser, login } from "../controllers/users";    // import the getUsers function from the users.js file
+import { getUsers, saveUser, updateUserMote, updateUserPassword, getUserById, getUserPassword, updateUserRole, deleteUser, login, confirmUser } from "../controllers/users";    // import the getUsers function from the users.js file
+import { validateToken } from "../validate-token";
 
 const router = Router();    
 
@@ -90,5 +91,7 @@ router.delete('/users/:userid', deleteUser);
  *   tags: [Users]
  */
 router.post('/users/login', login);
+
+router.put('/users/confirm/:userid', validateToken, confirmUser);
 
 export default router;

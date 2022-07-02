@@ -14,12 +14,12 @@ import SongFormScreen from './screens/SongFormScreen';
 import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
 import EventScreen from './screens/EventScreen';
-import SignInScreen from './screens/SignInScreen';
-import SignUpScreen from './screens/SignUpScreen';
-import ConfirmEmailScreen from './screens/ConfirmEmailScreen'
-import ResetPasswordScreen from './screens/ResetPasswordScreen';
-import WaitConfirmationScreen from './screens/WaitConfirmationScreen';
-import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import SignInScreen from './screens/PreLogInScreens/SignInScreen';
+import SignUpScreen from './screens/PreLogInScreens/SignUpScreen';
+import ConfirmEmailScreen from './screens/PreLogInScreens/ConfirmEmailScreen'
+import ResetPasswordScreen from './screens/PreLogInScreens/ResetPasswordScreen';
+import WaitConfirmationScreen from './screens/PreLogInScreens/WaitConfirmationScreen';
+import ForgotPasswordScreen from './screens/PreLogInScreens/ForgotPasswordScreen';
 import SplashScreen from './screens/SplashScreen';
 
 const EventStack = createStackNavigator();
