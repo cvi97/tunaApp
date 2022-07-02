@@ -10,7 +10,7 @@ const SongListScreen = () => {
   const [songs, setSongs] = useState([])
 
   const loadSongs = async () => {
-    const data = await getSongs(1);
+    const data = await getSongs();
     setSongs(data);
   }
 

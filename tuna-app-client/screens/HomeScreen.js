@@ -1,6 +1,7 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Layout from '../components/Layout';
 
 const HomeScreen = () => {
   const [user, setUser] = useState(0);
@@ -18,10 +19,23 @@ const HomeScreen = () => {
 
 
   return (
-    <View>
-      <Text>Bienvendo {user.mote}</Text>
-    </View>
+    <Layout>
+      <View>
+        <Text style={styles.title}>Bienvendo {user.mote}</Text>
+      </View>
+    </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    textAlign: 'left',
+    marginTop: 10,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+});
+
 
 export default HomeScreen

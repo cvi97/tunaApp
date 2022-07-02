@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { changeLyricsSong, getSongsTuna, saveSongsTuna, getSongTuna, deleteSong } from '../controllers/songs';
+import { changeLyricsSong, getSongsFromTuna, saveSongsTuna, getSongTuna, deleteSong } from '../controllers/songs';
+import { validateToken } from "../validate-token";
 
 const router = Router();
 
@@ -15,10 +16,10 @@ const router = Router();
  * @swagger
  * /tunas/{tunaId}/songs:
  *  get:
- *   description: Use to get all songs
+ *   description: Use to get all songs from a tuna
  *   tags: [Songs]
  */
-router.get('/tunas/:tunaid/songs', getSongsTuna);
+router.get('/tunas/songs/getall', validateToken, getSongsFromTuna);
 /**
  * @swagger
  * /tunas/{tunaId}/songs/{songId}:

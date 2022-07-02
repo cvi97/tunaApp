@@ -17,8 +17,15 @@ export const logIn = async (data) => {
 }
             
 
-export const getSongs = async (tunaid) => {
-    const res = await fetch(API + '/tunas/ ' + tunaid + '/songs');
+export const getSongs = async () => {
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/tunas/songs/getall', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
+        });
     return await res.json();
 }
 

@@ -45,8 +45,8 @@ const UserItem = ({userReceived, handleConfirm}) => {
       return (
         <View style={[containerStyle,styles.container]}>
           <TouchableOpacity >
-              <Text style={styles.text}>{userReceived.Name}</Text>
-              <Text style={styles.text}>{userReceived.Mote}</Text>
+            <Text style={styles.text}>{userReceived.Mote} </Text>
+            <Text style={styles.text}>{userReceived.Name}     Rol: {userReceived.Role}</Text>
           </TouchableOpacity>
         </View>
       )

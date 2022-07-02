@@ -1,10 +1,11 @@
 import { connect } from '../database';
 
 // All song from a tuna
-export const getSongsTuna = async (req, res) => {
-    const tunaID = req.params.tunaid;
+export const getSongsFromTuna = async (req, res) => {
+    const tunaID = req.tunaid;
+    console.log("SACA??" + tunaID);
     const connection = await connect();
-    const [rows] = await connection.query("SELECT * FROM Song WHERE Tuna = ?;", [tunaID]);
+    const [rows] = await connection.query("SELECT * FROM Song WHERE Tuna = 1;", [tunaID]);
     connection.end();
     res.json(rows);
 }

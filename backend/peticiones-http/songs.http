@@ -1,7 +1,9 @@
 @api = http://localhost:3000
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE1LCJ0dW5hSUQiOjEsInJvbGUiOiJhZG1pblR1bmEiLCJpYXQiOjE2NTY3OTc5NTEsImV4cCI6MTY1NzMzNzk1MX0.AbUg8FJlyAHKGP0VirGHPkPK6PF3bHdQfnHAkrCiO7o
 ### Pedir todas las canciones de una tuna
-GET {{api}}/tunas/1/songs
+GET {{api}}/tunas/songs/getall
+Authorization: {{token}}
+
 
 ### One song from one Tuna
 GET {{api}}/tunas/1/songs/1

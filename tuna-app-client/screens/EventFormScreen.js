@@ -34,7 +34,7 @@ const EventFormScreen = ({navigation}) => {
         placeholder="Dale un nombre al evento"
         onChangeText={(text) => setEvent({...event, name: text})}
       />
-      <TextInput style={styles.description}
+      <TextInput style={styles.description} multiline
         placeholder="Descripción del evento"
         onChangeText={(text) => setEvent({...event, description: text})}
       />
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 10,
     fontSize: 16,
+    textAlignVertical: 'top'
   },
   button: {
     backgroundColor: '#BB1616',

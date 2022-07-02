@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './screens/HomeScreen';
 import SongListScreen from './screens/SongListScreen';
 import SongFormScreen from './screens/SongFormScreen';
+import SongScreen from './screens/SongScreen';
 import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
 import UsersListScreen from './screens/UsersListScreen';
@@ -79,9 +80,14 @@ function SongStackScreen() {
       />
       <SongStack.Screen name="SongForm" component={SongFormScreen} 
         options= {{
-            title: "Nueva canción",
-          }}
-        />
+          title: "Nueva canción",
+        }}
+      />
+      <EventStack.Screen name="SongScreen" component={SongScreen}
+        options= {{
+          title: "Canción",
+        }}
+      />
     </SongStack.Navigator>	
   );
 }
@@ -136,7 +142,6 @@ const App = () => {
       >
         {token ? (
           <Tab.Group >
-            <Tab.Screen name="Eventos" component={EventStackScreen} options={{ headerShown: false }}/>
             <Tab.Screen name="Home" component={HomeScreen} 
               options={{
                 title: "Inicio",
@@ -145,6 +150,7 @@ const App = () => {
                 ),
               }}
             />
+            <Tab.Screen name="Eventos" component={EventStackScreen} options={{ headerShown: false }}/>
             <Tab.Screen name="Cancionero" component={SongStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Usuarios" component={UsersListScreen}  />
           </Tab.Group>
