@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet  } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const EventItem = ({Event, handleDelete }) => {
+const UserItem = ({userReceived, handleConfirm}) => {
   const [user, setUser] = useState(0);
   const refreshUser = () => {
     AsyncStorage.getItem('@user') .then(user => {
@@ -16,44 +16,38 @@ const EventItem = ({Event, handleDelete }) => {
   useEffect(() => {
     refreshUser();
   } , [])
-  console.log(user)
 
   const navigation = useNavigation();
-  var date = Event.Date;
-  var dateInDateFormat = new Date(date);
-  if (date != null) {
-    date = date.slice(0,10);
-  }
 
-  // if date of event is older than today then the color of the container is grey, else it is cream
-  const today = new Date();
   var containerStyle;
   {
-    (dateInDateFormat > today) ? containerStyle = styles.containerFutureEvent : containerStyle = styles.containerPastEvent;
+    (userReceived.isConfirmed) ? containerStyle = styles.isConfirmed : containerStyle = styles.notConfirmed;
   }
-  if(user.userID == Event.Creator)
+
+  if((userReceived.isConfirmed) == false && (user.role == "adminTuna")){
     return (
       <View style={[containerStyle,styles.container]}>
-        <TouchableOpacity onPress={() => navigation.navigate('EventScreen', {eventid: Event.EventID})}>
-            <Text style={styles.text}>{Event.Name}</Text>
-            <Text style={styles.text}>{date}</Text>
-        </TouchableOpacity>
+        <View >
+            <Text style={styles.text}>{userReceived.Name}</Text>
+            <Text style={styles.text}>{userReceived.Mote}</Text>
+        </View>
 
         <TouchableOpacity 
-          style={styles.deleteButton}
-          onPress={() => handleDelete(Event.EventID)}
+          style={styles.confirmButton}
+          onPress={() => handleConfirm(userReceived.UserID)}
         >
-          <Text >Borrar</Text>
+          <Text >Confirmar</Text>
         </TouchableOpacity>
       </View>
     )
+  }
     else{
       return (
         <View style={[containerStyle,styles.container]}>
-        <TouchableOpacity onPress={() => navigation.navigate('EventScreen', {eventid: Event.EventID})}>
-            <Text style={styles.text}>{Event.Name}</Text>
-            <Text style={styles.text}>{date}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity >
+              <Text style={styles.text}>{userReceived.Name}</Text>
+              <Text style={styles.text}>{userReceived.Mote}</Text>
+          </TouchableOpacity>
         </View>
       )
     }
@@ -65,12 +59,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'black',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
-    containerFutureEvent: {
-        backgroundColor: '#ffecd7'      
+    isConfirmed: {
+      backgroundColor: '#ffecd7'      
     },
-    containerPastEvent: {
+    notConfirmed: {
         backgroundColor: '#D2C1AE'
     },
     text: {
@@ -80,7 +74,7 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingLeft: 12,
     },
-    deleteButton: {
+    confirmButton: {
         backgroundColor: 'grey',
         borderRadius: 7,
         padding: 7,
@@ -88,4 +82,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EventItem
+export default UserItem

@@ -13,6 +13,7 @@ import SongListScreen from './screens/SongListScreen';
 import SongFormScreen from './screens/SongFormScreen';
 import EventListScreen from './screens/EventListScreen';
 import EventFormScreen from './screens/EventFormScreen';
+import UsersListScreen from './screens/UsersListScreen';
 import EventScreen from './screens/EventScreen';
 import SignInScreen from './screens/PreLogInScreens/SignInScreen';
 import SignUpScreen from './screens/PreLogInScreens/SignUpScreen';
@@ -98,16 +99,15 @@ const App = () => {
   useEffect(() => {
     refreshToken();
   } , [])
-  console.log("APP SE RENDERIZA")
-  console.log({token})
-  AsyncStorage.getAllKeys((err, keys) => {
+
+  /*AsyncStorage.getAllKeys((err, keys) => {
     AsyncStorage.multiGet(keys, (error, stores) => {
       stores.map((result, i, store) => {
         console.log({ [store[i][0]]: store[i][1] });
         return true;
       });
     });
-  });
+  });*/
   return (
     <NavigationContainer theme={MyTheme}>
       <Tab.Navigator
@@ -123,7 +123,10 @@ const App = () => {
               iconName = focused ? 'ios-musical-note' : 'ios-musical-note-outline';
             } else if (route.name === 'Eventos') {
               iconName = focused ? 'ios-list' : 'ios-list-outline';
-            }  
+            } else if (route.name === 'Usuarios') {
+              iconName = focused ? 'ios-people' : 'ios-people-outline';
+            }
+
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -143,6 +146,7 @@ const App = () => {
               }}
             />
             <Tab.Screen name="Cancionero" component={SongStackScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Usuarios" component={UsersListScreen}  />
           </Tab.Group>
         ) : (
           <Tab.Group 
@@ -152,7 +156,7 @@ const App = () => {
           >
             <Tab.Screen name="SignIn"  children={() => <SignInScreen refreshToken={refreshToken}/>} 
               options={{
-                title: "Inicio de sesión",
+                title: "Digital Tuna",
               }}
             />
             <Tab.Screen name="SignUp" component={SignUpScreen} 

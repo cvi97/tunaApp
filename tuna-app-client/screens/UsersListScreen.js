@@ -1,11 +1,16 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+
+import Layout from '../components/Layout'
+import UsersList from '../components/UsersList'
 
 const UsersListScreen = () => {
+  const navigation = useNavigation()
   return (
-    <View>
-      <Text>UsersListScreen</Text>
-    </View>
+    <Layout>
+      <UsersList navigation={navigation}/>
+    </Layout>
   )
 }
 

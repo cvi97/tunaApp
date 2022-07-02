@@ -11,7 +11,6 @@ const EventListScreen = ({navigation}) => {
   return (
     <Layout>
       <EventList navigation={navigation}/>
-      <NewButton navigation={navigation} type="event"/>
     </Layout>
     
   );

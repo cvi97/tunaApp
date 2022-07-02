@@ -50,7 +50,7 @@ export const deleteAllTunas = async (req, res) => {
 }
 
 export const getUsersByTuna = async (req, res) => {
-    const tunaID = req.params.id;
+    const tunaID = req.tunaid;
     const connection = await connect();
     const [rows] = await connection.query("SELECT *, 'No mostrar' as Password FROM Users WHERE Tuna = ?;", [tunaID]);
     connection.end();

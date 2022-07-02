@@ -26,6 +26,7 @@ const SignInScreen = ({ route, refreshToken}) => {
     else {
       try {
         await AsyncStorage.setItem('@token', response.token)
+        await AsyncStorage.setItem('@user', JSON.stringify(response.user))
         refreshToken();
       } catch (e) {
         console.log(e)

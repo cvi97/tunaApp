@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getEventsFromTuna, getEvent, saveEvent, deleteEvent, getEventUsers, saveUserIntoEvent } from '../controllers/events';
+import { getEventsFromTuna, getEvent, saveEvent, deleteEvent, getEventUsers, saveUserIntoEvent, changePaidFromEvent, addParticipantToEvent } from '../controllers/events';
 import { validateToken } from "../validate-token";
 
 const router = Router();
@@ -28,7 +28,7 @@ router.get('/events', validateToken, getEventsFromTuna);
  *   description: Use to get one event from a tuna
  *   tags: [Events]
  */
-router.get('/tunas/:tunaid/events/:eventid', getEvent);
+router.get('/events/:eventid', validateToken, getEvent);
 
 /**
  * @swagger
@@ -37,7 +37,7 @@ router.get('/tunas/:tunaid/events/:eventid', getEvent);
  *  description: Use to get all the users that are attending an event
  * tags: [Events]
  */
-router.get('/events/:eventid/users', getEventUsers);
+router.get('/events/:eventid/participants', getEventUsers);
 
 /**
  * @swagger
@@ -50,12 +50,12 @@ router.post('/events', validateToken, saveEvent);
 
 /**
  * @swagger
- * /events/{eventId}/users/{userId}:
+ * /events/{eventId}/addUser:
  *  post:
  *   description: Use to save a user to an event
  *   tags: [Events]
  */
-router.post('/events/:eventid/users', validateToken, saveUserIntoEvent);
+router.post('/events/:eventid/addUser', validateToken, addParticipantToEvent);
 
 /**
  * @swagger
@@ -65,5 +65,7 @@ router.post('/events/:eventid/users', validateToken, saveUserIntoEvent);
  *   tags: [Events]
  */
 router.delete('/events/:eventid', deleteEvent);
+
+router.put('/event/setPaid', validateToken, changePaidFromEvent)
 
 export default router;

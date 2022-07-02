@@ -22,7 +22,7 @@ export const getSongs = async (tunaid) => {
     return await res.json();
 }
 
-export const getEvents = async (tunaid) => {
+export const getEvents = async () => {
     const TOKEN = await AsyncStorage.getItem('@token');
     const res = await fetch(API + '/events', {
         method: 'GET',
@@ -35,7 +35,14 @@ export const getEvents = async (tunaid) => {
 }
 
 export const getEvent = async (eventid) => {
-    const res = await fetch(API + '/tunas/1/events/' + eventid);
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/events/' + eventid, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
+        });
     return await res.json();
 }
 
@@ -56,6 +63,62 @@ export const deleteEvent = async (eventid) => {
     console.log(eventid);
     const res = await fetch(API + '/events/' + eventid, {
         method: 'DELETE'
+    });
+    return await res.json();
+}
+
+export const getUsersByTuna = async () => {
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/tunas/users', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
+        });
+    return await res.json();
+}
+
+export const confirmUser = async (userid) => {
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/users/confirm' + userid, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
+        });
+    return await res.json();
+}
+
+export const getParticipants = async (eventid) => {
+    const res = await fetch(API + '/events/' + eventid + '/participants');
+    return await res.json();
+}
+
+export const changePaidFromEvent = async (eventid, userid, paid) => {
+    const res = await fetch(API + '/event/setPaid', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            'paid': paid,
+            'eventid': eventid,
+            'userid': userid
+        }
+    });
+    return await res.json();
+}
+
+export const addParticipant = async (eventid) => {
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/events/' + eventid + '/addUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
     });
     return await res.json();
 }

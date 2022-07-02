@@ -11,7 +11,7 @@ const EventList = ({navigation}) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const loadEvents = async () => {
-    const data = await getEvents(1);
+    const data = await getEvents();
     setEvents(data);
   }
 

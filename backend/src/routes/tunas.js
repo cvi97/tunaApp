@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { deleteTuna, getTuna, getTunas, getNumerOfUsers, saveTuna, deleteAllTunas, getUsersByTuna } from '../controllers/tunas'
+import { validateToken } from "../validate-token";
 
 const router = Router();
 
@@ -36,7 +37,7 @@ router.get('/tunas/:tunaid/countofusers', getNumerOfUsers)
  *   description: Use to get all users in a tuna
  *   tags: [Tunas]
  */
-router.get('/tunas/:id/users', getUsersByTuna)
+router.get('/tunas/users', validateToken, getUsersByTuna)
 
 
 /**

@@ -9,7 +9,6 @@ const EventFormScreen = ({navigation}) => {
   const [event, setEvent] = useState({
     name: '',
     description: '',
-    creator: 15,
     date: '',
   })
 

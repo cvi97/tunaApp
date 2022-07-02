@@ -130,7 +130,16 @@ export const login = async (req, res) => {
                         else {
                             res.json({
                                 message: 'Login correcto',
-                                token: token
+                                token: token,
+                                user: {
+                                    userID: rows[0].UserID,
+                                    name: rows[0].Name,
+                                    email: rows[0].Email,
+                                    tuna: rows[0].Tuna,
+                                    mote: rows[0].Mote,
+                                    role: rows[0].Role,
+                                    isConfirmed: rows[0].isConfirmed
+                                }
                             });
                         }
                     });

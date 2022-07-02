@@ -4,7 +4,8 @@
 GET {{api}}/users
 
 ### Pedir todos los usuarios de una tuna
-GET {{api}}/tunas/1/users
+GET {{api}}/tunas/users
+Authorization: {{token}}
 
 ### Get one user by id
 GET {{api}}/users/1
