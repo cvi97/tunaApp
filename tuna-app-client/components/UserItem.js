@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet  } from 'react-native'
 import React, {useState, useEffect} from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -15,6 +15,7 @@ const UserItem = ({userReceived, handleConfirm}) => {
   }
   useEffect(() => {
     refreshUser();
+    //userReceived.isConfirmed || handleConfirm(userReceived.UserID);
   } , [])
 
   const navigation = useNavigation();
@@ -36,7 +37,7 @@ const UserItem = ({userReceived, handleConfirm}) => {
           style={styles.confirmButton}
           onPress={() => handleConfirm(userReceived.UserID)}
         >
-          <Text >Confirmar</Text>
+          <Text>Confirmar</Text>
         </TouchableOpacity>
       </View>
     )
@@ -77,8 +78,9 @@ const styles = StyleSheet.create({
     confirmButton: {
         backgroundColor: 'grey',
         borderRadius: 7,
-        padding: 7,
+        padding: 4,
         margin: 10,
+        alignContent: 'center'
     }
 });
 

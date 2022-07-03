@@ -19,6 +19,7 @@ const SongScreen = ({route}) => {
   return (
     <Layout>
       <FlatList
+        style={{ marginTop: 10, marginLeft: 10 }}
         data={lines}
         keyExtractor={(item) => item}
         renderItem = {renderItem}

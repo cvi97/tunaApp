@@ -101,7 +101,7 @@ export const getUsersByTuna = async () => {
 
 export const confirmUser = async (userid) => {
     const TOKEN = await AsyncStorage.getItem('@token');
-    const res = await fetch(API + '/users/confirm' + userid, {
+    const res = await fetch(API + '/users/confirm/' + userid, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
