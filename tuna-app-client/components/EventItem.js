@@ -16,7 +16,6 @@ const EventItem = ({Event, handleDelete }) => {
   useEffect(() => {
     refreshUser();
   } , [])
-  console.log(user)
 
   const navigation = useNavigation();
   var date = Event.Date;

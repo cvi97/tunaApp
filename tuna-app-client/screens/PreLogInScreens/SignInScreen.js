@@ -32,8 +32,6 @@ const SignInScreen = ({ route, refreshToken}) => {
       } catch (e) {
         console.log(e)
       }
-      //console.log(await AsyncStorage.getItem('@token'))
-      //isLoggedIn = true;
     }
   }
   const onForgotPasswordPressed = () => {

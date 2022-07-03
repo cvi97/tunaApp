@@ -14,7 +14,6 @@ const ForgotPasswordScreen = ({navigation, route}) => {
   const {control, handleSubmit, formState: {errors}} = useForm();
 
   const onSendPressed= (data) => {
-    console.log(data)
     navigation.navigate("ResetPassword")
   }
   const onSignInPressed = () => {

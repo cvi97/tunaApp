@@ -23,7 +23,6 @@ const UsersList = ({navigation}) => {
   } , [navigation])
 
   const handleConfirm = async (userid) => {
-    console.log("confirming user: " + userid)
     await confirmUser(userid);
     loadUsers();
   }

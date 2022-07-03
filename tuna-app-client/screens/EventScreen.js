@@ -36,7 +36,6 @@ const EventScreen = () => {
   } , [])
 
   const handleJoin = async (eventid) => {
-    console.log(eventid)
     await addParticipant(eventid);
     loadParticipants(eventid);
   }

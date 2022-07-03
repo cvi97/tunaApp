@@ -11,9 +11,9 @@ const LineItem = ({line}) => {
 	//let str = "hy my name is: { name } and i am { age } old";
   let chords = [];
   let letter = [];
-  let vars = line.split(/({.*?})/);
+  let vars = line.split(/(\[.*?\])/);
   vars.forEach(element => {
-    if(element.slice(0, 1) == "{") {
+    if(element.slice(0, 1) == "[") {
       chords.push(element.slice(1, element.length - 1));
     } else {
       letter.push(element);
@@ -22,7 +22,6 @@ const LineItem = ({line}) => {
       }
     }
   });
-  console.log(chords);
   return (
     <View style={styles.line}>
       <Text style={styles.text}>{chords}</Text>

@@ -80,7 +80,6 @@ export const saveEvent = async (event) => {
 }
 
 export const deleteEvent = async (eventid) => {
-    console.log(eventid);
     const res = await fetch(API + '/events/' + eventid, {
         method: 'DELETE'
     });

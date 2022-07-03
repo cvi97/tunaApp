@@ -10,7 +10,6 @@ const ResetPasswordScreen = ({navigation}) => {
 
 
   const onEnterPressed = (data) => {
-    console.log(data)
   }
   const onResendPressed = () => {
     navigation.navigate("SignIn")

@@ -16,7 +16,6 @@ const HomeScreen = () => {
   useEffect(() => {
     refreshUser();
   } , [])
-  console.log(user)
 
   const onProfilePress = () => {
     console.log('profile pressed')
@@ -45,10 +44,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   button : {
-    backgroundColor: '#00bcd4',
     padding: 10,
     margin: 10,
     borderRadius: 5,
+    backgroundColor: '#BB1616',
   },
   buttonText: {
     fontSize: 20,
