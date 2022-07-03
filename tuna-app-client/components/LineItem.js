@@ -14,7 +14,7 @@ const LineItem = ({line}) => {
   let vars = line.split(/({.*?})/);
   vars.forEach(element => {
     if(element.slice(0, 1) == "{") {
-      chords.push(element);
+      chords.push(element.slice(1, element.length - 1));
     } else {
       letter.push(element);
       for (let i = 0; i < element.length; i++) {
