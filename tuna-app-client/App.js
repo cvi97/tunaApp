@@ -4,7 +4,7 @@ import {NavigationContainer, DefaultTheme, StackActions} from '@react-navigation
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NewButton from './components/NewButton'
-import Logo from './assets/logo-tuna.jpg'
+import Logo from './assets/digitaltuna-logo.jpg'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -162,7 +162,7 @@ const App = () => {
           >
             <Tab.Screen name="SignIn"  children={() => <SignInScreen refreshToken={refreshToken}/>} 
               options={{
-                title: "Digital Tuna",
+                title: "Inicia sesión",
               }}
             />
             <Tab.Screen name="SignUp" component={SignUpScreen} 
@@ -183,10 +183,7 @@ const App = () => {
             />
             <Tab.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
               options={{
-                title: "Renovar contraseña",
-                headerRight: () => (
-                  <Image source={Logo} style={{width: 50, height: 50, marginRight: 20}}/>
-                ),
+                title: "Renovar contraseña"
               }}
             />
             <Tab.Screen name="ResetPassword" component={ResetPasswordScreen} 
