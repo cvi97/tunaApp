@@ -26,7 +26,20 @@ export const getSongs = async () => {
             'Authorization': TOKEN
         }
         });
-    return await res.json();
+    return await res.json()
+}
+
+export const saveSong = async (data) => {
+    const TOKEN = await AsyncStorage.getItem('@token');
+    const res = await fetch(API + '/tunas/songs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        },
+        body: JSON.stringify(data)
+    });
+    return await res.json()
 }
 
 export const getEvents = async () => {

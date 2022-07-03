@@ -35,7 +35,7 @@ router.get('/tunas/:tunaid/songs/:songid', getSongTuna);
  *   description: Use to save a song
  *   tags: [Songs]
  */
-router.post('/tunas/:tunaid/songs', saveSongsTuna);
+router.post('/tunas/songs', validateToken, saveSongsTuna);
 
 /**
  * @swagger

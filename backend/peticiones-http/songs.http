@@ -9,13 +9,13 @@ Authorization: {{token}}
 GET {{api}}/tunas/1/songs/1
 
 ### Crear una canción
-POST {{api}}/tunas/1/songs
+POST {{api}}/tunas/songs
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "name": "Alicantina",
     "author": "Carlos Berrueco",
-    "lastEditor": 4,
     "lyrics": "Cuando estoy lejos recuerdo recuerdo \n mi inigualable ciudad \n solo de pensarlo quiero \n por mi Alicante llorar."
 }
 

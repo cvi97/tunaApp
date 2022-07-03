@@ -4,8 +4,10 @@ import DateSelector from '../components/DateSelector'
 
 import Layout from '../components/Layout'
 import { saveEvent } from '../api'
+import { useNavigation } from '@react-navigation/native'
 
-const EventFormScreen = ({navigation}) => {
+const EventFormScreen = () => {
+  const navigation = useNavigation();
   const [event, setEvent] = useState({
     name: '',
     description: '',

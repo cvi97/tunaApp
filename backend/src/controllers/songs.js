@@ -22,9 +22,9 @@ export const getSongTuna = async (req, res) => {
 
 export const saveSongsTuna = async (req, res) => {
     const name = req.body.name;
-    const tunaID = req.params.tunaid;
+    const tunaID = req.tunaid;
     const author = req.body.author;
-    const lastEditor = req.body.lastEditor;
+    const lastEditor = req.user;
     const lyrics = req.body.lyrics;
     
     const connection = await connect();
