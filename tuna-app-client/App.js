@@ -27,7 +27,6 @@ import SplashScreen from './screens/SplashScreen';
 const EventStack = createStackNavigator();
 const SongStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const isLoggedIn = "";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -120,7 +119,6 @@ const App = () => {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
             if (route.name === 'Home') {
               iconName = focused
                 ? 'ios-home'

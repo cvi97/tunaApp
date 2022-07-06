@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   lyrics: {
-    height: 100,
+    height: 400,
     borderWidth: 1,
     paddingLeft: 10,
     fontSize: 16,

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, {useState} from 'react'
 
 const ParticipantItem = ({Participant}) => {
@@ -8,6 +8,11 @@ const ParticipantItem = ({Participant}) => {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.text}>{Participant.Name} - {Participant.Mote}</Text>
+				<TouchableOpacity 
+					style={styles.paidButton}
+        			>
+          			<Text>Confirmar pago</Text>
+        		</TouchableOpacity>
 			</View>
   	)
 	} else {
@@ -34,6 +39,9 @@ const styles = StyleSheet.create({
 			paddingTop: 8,
 			paddingLeft: 12,
 	},
+	paidButton: {
+			backgroundColor: 'grey',
+	}
 })
 
 export default ParticipantItem
